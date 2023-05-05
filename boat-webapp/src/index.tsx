@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import {StrictMode} from 'react';
+import { StrictMode } from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
