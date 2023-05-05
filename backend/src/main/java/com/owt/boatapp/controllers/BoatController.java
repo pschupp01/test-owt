@@ -44,7 +44,7 @@ public class BoatController {
     }
 
     @PostMapping("boats")
-    BoatEntity newEmployee(@RequestBody BoatEntity boat) {
+    BoatEntity newBoat(@RequestBody BoatEntity boat) {
       try {
         BoatEntity savedBoat = boatService.createBoat(boat);
         return savedBoat;

@@ -25,7 +25,7 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .securityMatchers((matchers) -> matchers.requestMatchers("/boats"))
+                .securityMatchers((matchers) -> matchers.requestMatchers("/boats/**"))
                 .authorizeHttpRequests()
                 .anyRequest()
                 .permitAll();
