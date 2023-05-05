@@ -16,13 +16,20 @@ export const boats = [
     },
 ]
 
+import { useQuery } from "react-query";
+import apiClient from "../../config/http-config";
 
-
+interface Boat {
+    id: number;
+    name: string;
+    description: string;
+}
 const Overview = () => {
+    const { data: boats } = useQuery("boats", () => apiClient.get<Boat[]>("/boats"));
     return (
         <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
-            <h1>Overview</h1>
-            <table>
+            <h1 className="text-center text-xl">Boats list</h1>
+            <table className="w-full border">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -31,11 +38,11 @@ const Overview = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {boats.map((boat) => (
+                    {boats && boats.data.map((boat) => (
                         <tr key={boat.id}>
-                            <td>{boat.id}</td>
-                            <td>{boat.name}</td>
-                            <td>{boat.description}</td>
+                            <td className="text-center">{boat.id}</td>
+                            <td className="text-center">{boat.name}</td>
+                            <td className="text-center">{boat.description}</td>
                         </tr>
                     ))}
                 </tbody>
