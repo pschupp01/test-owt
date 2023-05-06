@@ -5,8 +5,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { Boat } from '../../entities';
 const BoatsList = () => {
-  const { data: boats } = useQuery('boats', () =>
-    apiClient.get<Boat[]>('/boats'),
+  const { data: boats } = useQuery(
+    'boats',
+    () => apiClient.get<Boat[]>('/boats'),
+    {
+      onError: () => {
+        navigate('/login');
+      },
+      retry: false,
+    },
   );
   const navigate = useNavigate();
   return (
