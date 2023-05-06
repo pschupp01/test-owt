@@ -1,6 +1,6 @@
 package com.owt.boatapp.controllers;
 
-import com.owt.boatapp.model.BoatEntity;
+import com.owt.boatapp.entities.Boat;
 import com.owt.boatapp.services.BoatService;
 
 import java.util.List;
@@ -16,44 +16,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-
 @RestController
 public class BoatController {
 
     @Autowired
     private BoatService boatService;
 
-    @GetMapping("boats/{id}")
-    public BoatEntity getBoat(@PathVariable Long id) {
-        if(id == null) {
+    @GetMapping("/api/boats/{id}")
+    public Boat getBoat(@PathVariable Long id) {
+        if (id == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        BoatEntity boat = boatService.getBoat(id);
-        if(boat != null){
+        Boat boat = boatService.getBoat(id);
+        if (boat != null) {
             return boat;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("boats")
-    public List<BoatEntity> getBoats(
-        @RequestParam(name="page", required = false) Integer  page, 
-        @RequestParam(name="size", required = false) Integer  size
-    ) {
+    @GetMapping("/api/boats")
+    public List<Boat> getBoats(
+            @RequestParam(name = "page", required = false) Integer page,
+            @RequestParam(name = "size", required = false) Integer size) {
         return boatService.getBoats(page, size);
     }
 
-    @PostMapping("boats")
-    BoatEntity newBoat(@RequestBody BoatEntity boat) {
-      try {
-        BoatEntity savedBoat = boatService.createBoat(boat);
-        return savedBoat;
-      } catch (Error e) {
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-      }
+    @PostMapping("/api/boats")
+    Boat newBoat(@RequestBody Boat boat) {
+        try {
+            Boat savedBoat = boatService.createBoat(boat);
+            return savedBoat;
+        } catch (Error e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
-    @DeleteMapping("boats/{id}")
+    @DeleteMapping("/api/boats/{id}")
     public void deleteBoat(@PathVariable Long id) {
         boatService.deleteBoat(id);
     }

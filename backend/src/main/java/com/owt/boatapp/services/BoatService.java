@@ -1,9 +1,7 @@
 package com.owt.boatapp.services;
 
-import com.owt.boatapp.model.BoatEntity;
+import com.owt.boatapp.entities.Boat;
 import com.owt.boatapp.repositories.BoatRepository;
-
-import io.micrometer.common.lang.Nullable;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,15 +19,15 @@ public class BoatService {
     @Autowired
     private BoatRepository boatRepository;
 
-    public BoatEntity getBoat(Long id) {
-        Optional<BoatEntity> boat = boatRepository.findById(id);
+    public Boat getBoat(Long id) {
+        Optional<Boat> boat = boatRepository.findById(id);
         if(boat.isPresent()){
             return boat.get();
         }
         return null;
     }
 
-    public List<BoatEntity> getBoats(
+    public List<Boat> getBoats(
         Integer  page, 
         Integer  size
     ) {
@@ -37,16 +35,16 @@ public class BoatService {
             return this.getBoats();
         }
         Pageable pageable = PageRequest.of(page,size);
-        Page<BoatEntity> resultPage = boatRepository.findAll(pageable);
+        Page<Boat> resultPage = boatRepository.findAll(pageable);
         return resultPage.getContent();
     }
 
-    public List<BoatEntity> getBoats(
+    public List<Boat> getBoats(
     ) {
            return  boatRepository.findAll();
     }
 
-    public BoatEntity createBoat(BoatEntity boat) {
+    public Boat createBoat(Boat boat) {
         return boatRepository.save(boat);
     }
 
