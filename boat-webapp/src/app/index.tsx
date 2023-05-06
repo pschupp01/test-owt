@@ -1,5 +1,5 @@
-import App from "../components/App";
+import App from '../components/App';
 
-const rootPage = () => <App/>;
+const rootPage = () => <App />;
 
 export default rootPage;

@@ -1,36 +1,7 @@
-export const boats = [
-  {
-    id: 1,
-    name: 'Boat 1',
-    description: 'This is the first boat',
-  },
-  {
-    id: 2,
-    name: 'Boat 2',
-    description: 'This is the second boat',
-  },
-  {
-    id: 3,
-    name: 'Boat 3',
-    description: 'This is the third boat',
-  },
-];
-
 import { useQuery } from 'react-query';
 import apiClient from '../../config/http-config';
-import {
-  TableContainer,
-  Table,
-  TableCaption,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from '@chakra-ui/react';
+import { Table, Thead, Tr, Th, Tbody, Td, Container } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-
-import { redirect } from 'react-router-dom';
 
 import { Boat } from '../../entities';
 const BoatsList = () => {
@@ -39,9 +10,8 @@ const BoatsList = () => {
   );
   const navigate = useNavigate();
   return (
-    <TableContainer w="5xl">
+    <Container w="5xl">
       <Table variant="striped">
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
         <Thead>
           <Tr>
             <Th>Id</Th>
@@ -66,7 +36,7 @@ const BoatsList = () => {
             ))}
         </Tbody>
       </Table>
-    </TableContainer>
+    </Container>
   );
 };
 
