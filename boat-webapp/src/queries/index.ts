@@ -28,7 +28,6 @@ export const loginUser = async ({
 
 export const getBoats = async () => {
   const headers = getAuthorizationHeader();
-  console.log(headers);
   return apiClient.get<Boat[]>('/boats', headers);
 };
 
