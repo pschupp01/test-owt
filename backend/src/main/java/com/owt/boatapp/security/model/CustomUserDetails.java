@@ -1,8 +1,11 @@
-package com.owt.boatapp.entities;
+package com.owt.boatapp.security.model;
+
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.owt.boatapp.entities.User;
 
 import lombok.Getter;
 
@@ -48,5 +51,5 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    
+
 }

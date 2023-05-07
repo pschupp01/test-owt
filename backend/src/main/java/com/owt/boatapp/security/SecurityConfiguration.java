@@ -1,4 +1,4 @@
-package com.owt.boatapp.config;
+package com.owt.boatapp.security;
 
 import java.util.Arrays;
 
@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,7 +20,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.owt.boatapp.services.CustomUserDetailsService;
+import com.owt.boatapp.security.filters.JwtTokenFilter;
+import com.owt.boatapp.security.services.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity

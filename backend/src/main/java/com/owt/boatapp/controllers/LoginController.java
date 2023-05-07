@@ -1,12 +1,6 @@
 package com.owt.boatapp.controllers;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.CacheControl;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.owt.boatapp.config.JwtTokenUtil;
-import com.owt.boatapp.entities.CustomUserDetails;
+import com.owt.boatapp.security.model.CustomUserDetails;
+import com.owt.boatapp.security.util.JwtTokenUtil;
 
 @RestController
 public class LoginController {

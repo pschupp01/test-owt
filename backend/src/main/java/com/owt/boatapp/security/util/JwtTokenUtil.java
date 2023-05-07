@@ -1,24 +1,17 @@
-package com.owt.boatapp.config;
+package com.owt.boatapp.security.util;
 
 import java.util.Date;
 
 import javax.crypto.SecretKey;
 
-import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.WebUtils;
-
-import com.owt.boatapp.entities.CustomUserDetails;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 
 @Component
 public class JwtTokenUtil {
   private SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-  private String jwtCookie = "bearer";
 
   /*
    * public String getJwtFromCookies(HttpServletRequest request) {
