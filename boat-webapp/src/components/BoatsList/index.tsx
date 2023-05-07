@@ -1,5 +1,4 @@
-import { useMutation, useQuery } from 'react-query';
-import apiClient from '../../config/http-config';
+import { useMutation, useQueryClient } from 'react-query';
 import {
   Table,
   Thead,
@@ -9,29 +8,34 @@ import {
   Container,
   Text,
   Button,
+  Flex,
+  TableContainer,
 } from '@chakra-ui/react';
 
 import { AddIcon } from '@chakra-ui/icons';
-import { useNavigate } from 'react-router-dom';
 
-import { Boat } from '../../entities';
 import BoatRow from '../BoatRow';
 import { FC, useState } from 'react';
 import BoatFormModal from '../Modals/BoatFormModal';
-import { getBoats, addBoat } from '../../queries';
+import { addBoat } from '../../queries';
+import { Boat } from '../../entities';
 
-const BoatsList: FC = () => {
-  const { data: boats } = useQuery('boats', getBoats, {
-    onError: () => {
-      console.log('On error');
-      navigate('/login');
+interface BoatsListProps {
+  boats: Boat[];
+}
+
+const BoatsList: FC<BoatsListProps> = ({ boats }) => {
+  const queryClient = useQueryClient();
+
+  const { mutate: addBoatMutate } = useMutation(addBoat, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['boats'] });
+      setIsAddBoatModalOpen(false);
     },
-    retry: false,
   });
-  const { mutate: addBoatMutate } = useMutation(addBoat);
 
   const [isAddBoatModalOpen, setIsAddBoatModalOpen] = useState(false);
-  const navigate = useNavigate();
+
   return (
     <>
       {isAddBoatModalOpen ? (
@@ -43,28 +47,33 @@ const BoatsList: FC = () => {
           validationButtonText="Add"
         />
       ) : null}
-      <Container w="80vw" h="80vh">
-        <Text fontSize="2xl">List of boats</Text>
-        <Button
-          onClick={() => setIsAddBoatModalOpen(true)}
-          leftIcon={<AddIcon />}
-        >
-          Add a new boat
-        </Button>
-        <Table variant="striped">
-          <Thead>
-            <Tr>
-              <Th>Id</Th>
-              <Th>Name</Th>
-              <Th>Description</Th>
-              <Th textAlign={'center'}>Actions</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {boats &&
-              boats.data.map((boat) => <BoatRow key={boat.id} boat={boat} />)}
-          </Tbody>
-        </Table>
+      <Container minW="80vw" h="80vh" overflowY={'auto'}>
+        <Flex justifyContent="space-between">
+          <Text fontSize="2xl">List of boats</Text>
+          <Button
+            onClick={() => setIsAddBoatModalOpen(true)}
+            leftIcon={<AddIcon />}
+          >
+            New boat
+          </Button>
+        </Flex>
+        <TableContainer overflowX={'hidden'}>
+          <Table variant="striped" maxW="full">
+            <Thead>
+              <Tr>
+                <Th>Id</Th>
+                <Th maxW="500px">Name</Th>
+                <Th maxW="500px">Description</Th>
+                <Th textAlign={'center'}>Actions</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {boats.map((boat) => (
+                <BoatRow key={boat.id} boat={boat} />
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
       </Container>
     </>
   );

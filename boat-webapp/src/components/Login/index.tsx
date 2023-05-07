@@ -22,6 +22,7 @@ const Login: FC = () => {
   const { mutate } = useMutation(loginUser, {
     onSuccess: (data) => {
       localStorage.setItem('bearer', data);
+      console.log('navigate fropm here');
       navigate('/boats');
     },
     onError: () => {

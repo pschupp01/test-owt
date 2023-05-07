@@ -58,12 +58,13 @@ const BoatFormModal: FC<ModalProps> = ({
           </FormControl>
         </ModalBody>
         <ModalFooter>
-          <Button mr={3} onClick={onClose} variant="ghost">
+          <Button mr={3} onClick={onClose} variant="ghost" w="5xs">
             Close
           </Button>
           <Button
             isDisabled={!name || !description}
-            colorScheme="messenger"
+            w="5xs"
+            colorScheme="facebook"
             onClick={() => onValidation({ name, description })}
           >
             {validationButtonText}

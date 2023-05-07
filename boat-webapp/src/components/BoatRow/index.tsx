@@ -1,19 +1,33 @@
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { Tr, Td } from '@chakra-ui/react';
+import { Tr, Td, Text, IconButton } from '@chakra-ui/react';
 import { Boat } from '../../entities';
 import { useNavigate } from 'react-router-dom';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { FC, useState } from 'react';
 import DeleteModal from '../Modals/DeleteModal';
 import BoatFormModal from '../Modals/BoatFormModal';
 import { deleteBoat, updateBoat } from '../../queries';
 
 const BoatRow: FC<{ boat: Boat }> = ({ boat }) => {
+  const queryClient = useQueryClient();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const navigate = useNavigate();
-  const { mutate: deleteBoatMutate } = useMutation(deleteBoat);
-  const { mutate: updateBoatMutate } = useMutation(updateBoat);
+
+  const { mutate: deleteBoatMutate } = useMutation(deleteBoat, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['boats'] });
+      setIsDeleteModalOpen(false);
+    },
+  });
+
+  const { mutate: updateBoatMutate } = useMutation(updateBoat, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['boats'] });
+      setIsEditModalOpen(false);
+    },
+  });
+
   return (
     <>
       {isDeleteModalOpen ? (
@@ -22,7 +36,6 @@ const BoatRow: FC<{ boat: Boat }> = ({ boat }) => {
           onClose={() => setIsDeleteModalOpen(false)}
           onValidation={() => {
             deleteBoatMutate({ boatId: boat.id });
-            setIsDeleteModalOpen(false);
           }}
         />
       ) : null}
@@ -38,7 +51,6 @@ const BoatRow: FC<{ boat: Boat }> = ({ boat }) => {
               boatId: boat.id,
               boat: editedBoat,
             });
-            setIsEditModalOpen(false);
           }}
         />
       ) : null}
@@ -48,27 +60,49 @@ const BoatRow: FC<{ boat: Boat }> = ({ boat }) => {
           cursor: 'pointer',
         }}
         onClick={() => {
-          console.log('cliock');
           navigate(`/boats/${boat.id}`);
         }}
       >
-        <Td>{boat.id}</Td>
-        <Td>{boat.name}</Td>
-        <Td>{boat.description}</Td>
-        <Td textAlign={'center'}>
-          <EditIcon
-            m="2"
+        <Td width="50px" maxW="20px">
+          {boat.id}
+        </Td>
+        <Td width="20px">
+          <Text
+            maxW="200px"
+            height="25px"
+            overflow="hidden"
+            textOverflow={'ellipsis'}
+          >
+            {boat.name}
+          </Text>
+        </Td>
+        <Td maxW="20px">
+          <Text
+            maxW="100%"
+            height="25px"
+            overflow="hidden"
+            textOverflow={'ellipsis'}
+          >
+            {boat.description}
+          </Text>
+        </Td>
+        <Td width="50px" maxW="20px">
+          <IconButton
+            variant="unstyled"
             _hover={{
               color: 'blue.500',
               cursor: 'pointer',
             }}
+            aria-label={'edit'}
             onClick={(e) => {
               setIsEditModalOpen(true);
               e.stopPropagation();
             }}
-          ></EditIcon>
-          <DeleteIcon
-            m="2"
+            icon={<EditIcon />}
+          />
+          <IconButton
+            variant="unstyled"
+            aria-label={'delete'}
             _hover={{
               color: 'red.500',
               cursor: 'pointer',
@@ -77,6 +111,7 @@ const BoatRow: FC<{ boat: Boat }> = ({ boat }) => {
               setIsDeleteModalOpen(true);
               e.stopPropagation();
             }}
+            icon={<DeleteIcon />}
           />
         </Td>
       </Tr>

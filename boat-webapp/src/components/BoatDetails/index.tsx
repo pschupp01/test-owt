@@ -1,31 +1,34 @@
 import { FC } from 'react';
-import { useQuery } from 'react-query';
-import apiClient from '../../config/http-config';
 import { Boat } from '../../entities';
-import { Container, Text } from '@chakra-ui/react';
+import { Box, Container, Text, Divider, Flex, Button } from '@chakra-ui/react';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 
 interface BoatDetailsProps {
-  boatId?: string;
+  boat: Boat;
 }
-const BoatDetails: FC<BoatDetailsProps> = ({ boatId }) => {
+const BoatDetails: FC<BoatDetailsProps> = ({ boat }) => {
   const navigate = useNavigate();
-  const { data } = useQuery(
-    'boat',
-    () => apiClient.get<Boat>(`/boats/${boatId}`),
-    {
-      onError: () => {
-        console.log('On error');
-        navigate('/login');
-      },
-      retry: false,
-    },
-  );
   return (
     <Container w="lg">
-      <Text fontSize="xl">Boat Details</Text>
-      <Text fontSize="lg">{data?.data.name}</Text>
-      <Text fontSize="lg">{data?.data.description}</Text>
+      <Flex justifyContent="space-between" mb="2">
+        <Text fontSize="2xl">Boat Details</Text>
+        <Button
+          variant="ghost"
+          rounded="full"
+          h="8xs"
+          w="8xs"
+          leftIcon={<ArrowBackIcon boxSize={6} />}
+          onClick={() => navigate('/boats')}
+        ></Button>
+      </Flex>
+      <Divider />
+      <Box p={4}>
+        <Text fontSize="xl">Name:</Text>
+        <Text fontSize="lg">{boat.name}</Text>
+        <Text fontSize="xl">Description</Text>
+        <Text fontSize="lg">{boat.description}</Text>
+      </Box>
     </Container>
   );
 };
