@@ -1,6 +1,6 @@
 import { Box, Button, Flex } from '@chakra-ui/react';
 import { FC, PropsWithChildren } from 'react';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 interface LayoutProps {

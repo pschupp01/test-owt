@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import BoatsList from '../../components/BoatsList';
 import Layout from '../../components/Layout';
 import { getBoats } from '../../queries';
@@ -7,7 +7,7 @@ import { Spinner } from '@chakra-ui/react';
 
 const BoatsPage = () => {
   const navigate = useNavigate();
-  const { data: boats } = useQuery('boats', getBoats, {
+  const { data: boats } = useQuery(['boats'], getBoats, {
     onError: () => {
       navigate('/login');
     },

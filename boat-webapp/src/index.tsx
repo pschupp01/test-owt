@@ -3,7 +3,7 @@ import { StrictMode } from 'react';
 import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import router from './routers/DefaultRouter';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './themes';
 

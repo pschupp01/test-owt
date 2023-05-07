@@ -2,7 +2,7 @@ import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { Tr, Td, Text, IconButton } from '@chakra-ui/react';
 import { Boat } from '../../entities';
 import { useNavigate } from 'react-router-dom';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FC, useState } from 'react';
 import DeleteModal from '../Modals/DeleteModal';
 import BoatFormModal from '../Modals/BoatFormModal';

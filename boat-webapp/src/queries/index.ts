@@ -26,11 +26,14 @@ export const loginUser = async ({
   return response;
 };
 
-export const getBoats = async () =>
-  apiClient.get<Boat[]>('/boats', getAuthorizationHeader());
+export const getBoats = async () => {
+  const headers = getAuthorizationHeader();
+  console.log(headers);
+  return apiClient.get<Boat[]>('/boats', headers);
+};
 
 export const getBoat = (boatId: string) => async () =>
-  apiClient.get<Boat>(`/boats/${boatId}`);
+  apiClient.get<Boat>(`/boats/${boatId}`, getAuthorizationHeader());
 
 export const addBoat = async (boat: Partial<Boat>) => {
   if (!boat.name || !boat.description) {

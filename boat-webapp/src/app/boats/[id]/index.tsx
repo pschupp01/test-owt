@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import BoatDetails from '../../../components/BoatDetails';
 import Layout from '../../../components/Layout';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getBoat } from '../../../queries';
 import { Spinner } from '@chakra-ui/react';
 
@@ -12,14 +12,14 @@ const BoatPage = () => {
     navigate('/boats');
     return null;
   }
-  const { data: boat } = useQuery('boat', getBoat(boatId), {
+  const { data: boat } = useQuery(['boat'], getBoat(boatId), {
     onError: () => {
       navigate('/login');
     },
     retry: false,
   });
   return (
-    <Layout>
+    <Layout isLoggedIn>
       {boat ? <BoatDetails boat={boat.data} /> : <Spinner color="blue.500" />}
     </Layout>
   );
