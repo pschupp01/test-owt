@@ -3,48 +3,34 @@ import {
   Container,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   Text,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useMutation } from 'react-query';
-import apiClient from '../../config/http-config';
+import { loginUser } from '../../queries';
 import { useNavigate } from 'react-router-dom';
 
-const loginUser = async ({
-  username,
-  password,
-}: {
-  username: string;
-  password: string;
-}) => {
-  const params = new URLSearchParams();
-  params.append('username', username);
-  params.append('password', password);
-  const { data: response } = await apiClient.post('/login', params, {
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  });
-  return response;
-};
-
-const Login = () => {
+const Login: FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { mutate, isLoading } = useMutation(loginUser, {
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { mutate } = useMutation(loginUser, {
     onSuccess: (data) => {
       localStorage.setItem('bearer', data);
       navigate('/boats');
-      alert(data);
     },
     onError: () => {
-      alert('there was an error');
+      setError("Username or password doesn't match");
+      setIsLoading(false);
     },
   });
-
   return (
-    <Container>
+    <Container w={500}>
       <Text fontSize="xl">Login</Text>
       <FormControl isRequired>
         <FormLabel>Username :</FormLabel>
@@ -62,12 +48,21 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </FormControl>
-      <Flex direction="row-reverse">
+      <FormControl isInvalid={!!error} h={6}>
+        <FormErrorMessage m={0} textAlign={'center'}>
+          {error}
+        </FormErrorMessage>
+      </FormControl>
+      <Flex direction="row" justifyContent={'center'} mt="2">
         <Button
-          w="s"
+          w="xs"
           type="submit"
           isLoading={isLoading}
-          onClick={() => mutate({ username, password })}
+          isDisabled={isLoading || !username || !password}
+          onClick={() => {
+            setIsLoading(true);
+            mutate({ username, password });
+          }}
         >
           Login
         </Button>

@@ -1,49 +1,72 @@
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import apiClient from '../../config/http-config';
-import { Table, Thead, Tr, Th, Tbody, Td, Container } from '@chakra-ui/react';
+import {
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Container,
+  Text,
+  Button,
+} from '@chakra-ui/react';
+
+import { AddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 
 import { Boat } from '../../entities';
-const BoatsList = () => {
-  const { data: boats } = useQuery(
-    'boats',
-    () => apiClient.get<Boat[]>('/boats'),
-    {
-      onError: () => {
-        navigate('/login');
-      },
-      retry: false,
+import BoatRow from '../BoatRow';
+import { FC, useState } from 'react';
+import BoatFormModal from '../Modals/BoatFormModal';
+import { getBoats, addBoat } from '../../queries';
+
+const BoatsList: FC = () => {
+  const { data: boats } = useQuery('boats', getBoats, {
+    onError: () => {
+      console.log('On error');
+      navigate('/login');
     },
-  );
+    retry: false,
+  });
+  const { mutate: addBoatMutate } = useMutation(addBoat);
+
+  const [isAddBoatModalOpen, setIsAddBoatModalOpen] = useState(false);
   const navigate = useNavigate();
   return (
-    <Container w="5xl">
-      <Table variant="striped">
-        <Thead>
-          <Tr>
-            <Th>Id</Th>
-            <Th>Name</Th>
-            <Th>Description</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {boats &&
-            boats.data.map((boat) => (
-              <Tr
-                key={boat.id}
-                onClick={() => {
-                  console.log('cliock');
-                  navigate(`/boats/${boat.id}`);
-                }}
-              >
-                <Td>{boat.id}</Td>
-                <Td>{boat.name}</Td>
-                <Td>{boat.description}</Td>
-              </Tr>
-            ))}
-        </Tbody>
-      </Table>
-    </Container>
+    <>
+      {isAddBoatModalOpen ? (
+        <BoatFormModal
+          title="Add a new boat"
+          onClose={() => setIsAddBoatModalOpen(false)}
+          isOpen={true}
+          onValidation={addBoatMutate}
+          validationButtonText="Add"
+        />
+      ) : null}
+      <Container w="80vw" h="80vh">
+        <Text fontSize="2xl">List of boats</Text>
+        <Button
+          onClick={() => setIsAddBoatModalOpen(true)}
+          leftIcon={<AddIcon />}
+        >
+          Add a new boat
+        </Button>
+        <Table variant="striped">
+          <Thead>
+            <Tr>
+              <Th>Id</Th>
+              <Th>Name</Th>
+              <Th>Description</Th>
+              <Th textAlign={'center'}>Actions</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {boats &&
+              boats.data.map((boat) => <BoatRow key={boat.id} boat={boat} />)}
+          </Tbody>
+        </Table>
+      </Container>
+    </>
   );
 };
 
