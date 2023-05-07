@@ -21,34 +21,43 @@ public class BoatService {
 
     public Boat getBoat(Long id) {
         Optional<Boat> boat = boatRepository.findById(id);
-        if(boat.isPresent()){
+        if (boat.isPresent()) {
             return boat.get();
         }
         return null;
     }
 
     public List<Boat> getBoats(
-        Integer  page, 
-        Integer  size
-    ) {
-        if(page == null || size == null){
+            Integer page,
+            Integer size) {
+        if (page == null || size == null) {
             return this.getBoats();
         }
-        Pageable pageable = PageRequest.of(page,size);
+        Pageable pageable = PageRequest.of(page, size);
         Page<Boat> resultPage = boatRepository.findAll(pageable);
         return resultPage.getContent();
     }
 
-    public List<Boat> getBoats(
-    ) {
-           return  boatRepository.findAll();
+    public List<Boat> getBoats() {
+        return boatRepository.findAll();
     }
 
     public Boat createBoat(Boat boat) {
         return boatRepository.save(boat);
     }
 
-    public void deleteBoat(@PathVariable Long id) {
+    public void deleteBoat(Long id) {
         boatRepository.deleteById(id);
+    }
+
+    public Boat updateBoat(Long id, Boat payload) {
+        Optional<Boat> boatRes = boatRepository.findById(id);
+        if (boatRes.isPresent()) {
+            Boat boat = boatRes.get();
+            boat.setName(payload.getName());
+            boat.setDescription(payload.getDescription());
+            return boatRepository.save(boat);
+        }
+        return null;
     }
 }

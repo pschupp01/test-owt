@@ -21,49 +21,48 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
-    private String authorizationPrefix = "Bearer";
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+        private String authorizationPrefix = "Bearer";
+        @Autowired
+        private JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
-    private UserRepository userRepo;
+        @Autowired
+        private UserRepository userRepo;
 
-    public JwtTokenFilter() {
-    }
-
-    @Override
-    protected void doFilterInternal(HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain chain)
-            throws ServletException, IOException {
-        // Get authorization header and validate
-        final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-
-        if (header == null || !header.startsWith(authorizationPrefix)) {
-            chain.doFilter(request, response);
-            return;
+        public JwtTokenFilter() {
         }
 
-        // Get jwt token and validate
-        final String token = header.split(" ")[1].trim();
-        if (!jwtTokenUtil.validateJwtToken(token)) {
-            chain.doFilter(request, response);
-            return;
+        @Override
+        protected void doFilterInternal(HttpServletRequest request,
+                        HttpServletResponse response,
+                        FilterChain chain)
+                        throws ServletException, IOException {
+                // Get authorization header and validate
+                final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+                if (header == null || !header.startsWith(authorizationPrefix)) {
+                        chain.doFilter(request, response);
+                        return;
+                }
+
+                // Get jwt token and validate
+                final String token = header.split(" ")[1].trim();
+                if (!jwtTokenUtil.validateJwtToken(token)) {
+                        chain.doFilter(request, response);
+                        return;
+                }
+
+                // Get user identity and set it on the spring security context
+                User user = userRepo
+                                .findByUsername(jwtTokenUtil.getUserNameFromJwtToken(token));
+
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                                user, null, null);
+
+                authentication.setDetails(
+                                new WebAuthenticationDetailsSource().buildDetails(request));
+
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                chain.doFilter(request, response);
         }
-
-        // Get user identity and set it on the spring security context
-        User user = userRepo
-                .findByUsername(jwtTokenUtil.getUserNameFromJwtToken(token));
-
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                user, null, null);
-
-        authentication.setDetails(
-                new WebAuthenticationDetailsSource().buildDetails(request));
-        System.out.println("authenticated user " + user.getUsername()
-                + ", setting security context");
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        chain.doFilter(request, response);
-    }
 
 }

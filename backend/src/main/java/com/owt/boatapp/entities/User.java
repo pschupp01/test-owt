@@ -15,18 +15,18 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name="UserInfo")
+@Table(name = "UserInfo")
 @Entity
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
-    
+
     private String password;
 
     @CreatedDate

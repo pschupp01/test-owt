@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +46,16 @@ public class BoatController {
     Boat newBoat(@RequestBody Boat boat) {
         try {
             Boat savedBoat = boatService.createBoat(boat);
+            return savedBoat;
+        } catch (Error e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
+    @PutMapping("/api/boats/{id}")
+    Boat replaceBoat(@RequestBody Boat newBoat, @PathVariable Long id) {
+        try {
+            Boat savedBoat = boatService.updateBoat(id, newBoat);
             return savedBoat;
         } catch (Error e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

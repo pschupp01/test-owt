@@ -15,18 +15,18 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name="Boat")
+@Table(name = "Boat")
 @Entity
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
 public class Boat {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    
+
     private String description;
 
     @CreatedDate
