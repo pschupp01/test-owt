@@ -11,8 +11,6 @@
 ## Tools
 ### React router
 
-### Tailwindcss
-
-## Installation process
+### Chakra UI
 
 

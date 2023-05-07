@@ -1,4 +1,4 @@
-import apiClient from '../config/http-config';
+import apiClient from './http-config';
 import { Boat } from '../entities';
 
 const getAuthorizationHeader = () => {
