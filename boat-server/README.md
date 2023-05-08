@@ -8,18 +8,18 @@ An in-depth explanation of the different dependencies is [available here](./docs
 
 If you want to know more about what was implemented in this project, a documentation is [available here](./docs/features.md).
 
-It is already configured to run in dev mode, but some parameters are configurable in the application.properties file.
+It is already configured to run in dev mode, but some parameters are configurable in the application.properties file.\
 You can find more about it [here](./docs/custom-configuration.md).
 
-This project is small and was made in a few days.
-But it was made as-if it was the first initialization of a more complex project.
+This project is small and was made in a few days.\
+But it was made as-if it was the first initialization of a more complex project.\
 Some thoughts about what could been done in the future is [available here](./docs/whats-next.md)
 
 It was bootstrapped with [Spring Boot](https://spring.io/projects/spring-boot)
 
 # Installation and requirements
 
-This project was made and tested with [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.htmld)
+This project was made and tested with [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)\
 It uses [gradle](https://gradle.org/)
 
 Simply run `gradle bootRun` to install the dependencies and start the app.

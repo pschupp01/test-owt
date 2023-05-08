@@ -16,5 +16,5 @@ The frontend for the app, [more details here](./boat-webapp/README.md)
 
 ### Default username / password to log
 
-username: admin
+username: admin\
 password: adminPassword
