@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - BoatControllerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>BoatControllerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.owt.boatapp.controllers.html">com.owt.boatapp.controllers</a> &gt; BoatControllerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">7</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.390s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">shouldCreateBoat()</td>
+<td class="success">0.013s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldDeleteBoat()</td>
+<td class="success">0.013s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldReturnAllBoats()</td>
+<td class="success">0.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldReturnSpecificBoat()</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldReturnUnauthorizedIfNoToken()</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldReturnUnauthorizedWithInvalidToken()</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldUpdateBoat()</td>
+<td class="success">0.322s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2023-05-08T13:51:05.061+02:00  INFO 25408 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.owt.boatapp.controllers.BoatControllerTest]: BoatControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-05-08T13:51:05.081+02:00  INFO 25408 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.owt.boatapp.BoatappApplication for test class com.owt.boatapp.controllers.BoatControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.6)
+
+2023-05-08T13:51:05.105+02:00  INFO 25408 --- [    Test worker] c.o.b.controllers.BoatControllerTest     : Starting BoatControllerTest using Java 17.0.6 with PID 25408 (started by pschupp in /home/pschupp/test-owt/backend)
+2023-05-08T13:51:05.105+02:00  INFO 25408 --- [    Test worker] c.o.b.controllers.BoatControllerTest     : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-05-08T13:51:05.268+02:00  INFO 25408 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-08T13:51:05.277+02:00  INFO 25408 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 2 JPA repository interfaces.
+2023-05-08T13:51:05.478+02:00  INFO 25408 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-05-08T13:51:05.481+02:00  INFO 25408 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:a582bfcc-9a5a-4226-b8d4-3fc2e3d0f410 user=SA
+2023-05-08T13:51:05.481+02:00  INFO 25408 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-05-08T13:51:05.484+02:00  INFO 25408 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-08T13:51:05.493+02:00  INFO 25408 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-05-08T13:51:05.541+02:00  INFO 25408 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-08T13:51:05.542+02:00  INFO 25408 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-08T13:51:05.612+02:00  WARN 25408 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-08T13:51:05.699+02:00  INFO 25408 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6ae55678, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4bc75792, org.springframework.security.web.context.SecurityContextHolderFilter@18edbed9, org.springframework.security.web.header.HeaderWriterFilter@569d6e0d, org.springframework.web.filter.CorsFilter@2a0d8df8, org.springframework.security.web.authentication.logout.LogoutFilter@773ad729, com.owt.boatapp.security.filters.JwtTokenFilter@22d23c27, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4823f4d0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75f316df, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@63be4548, org.springframework.security.web.session.SessionManagementFilter@43069adf, org.springframework.security.web.access.ExceptionTranslationFilter@76e4df53, org.springframework.security.web.access.intercept.AuthorizationFilter@4d408746]
+2023-05-08T13:51:05.827+02:00  INFO 25408 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-05-08T13:51:05.827+02:00  INFO 25408 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-05-08T13:51:05.832+02:00  INFO 25408 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2023-05-08T13:51:05.841+02:00  INFO 25408 --- [    Test worker] c.o.b.controllers.BoatControllerTest     : Started BoatControllerTest in 0.756 seconds (process running for 5.495)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.6.1</a> at May 8, 2023, 1:51:06 PM</p>
+</div>
+</div>
+</body>
+</html>

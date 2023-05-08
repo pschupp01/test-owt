@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.owt.boatapp.BoatappApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-08T11:51:04" hostname="DESKTOP-IQBA7OS" time="0.17">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.owt.boatapp.BoatappApplicationTests" time="0.17"/>
+  <system-out><![CDATA[13:51:01.110 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [BoatappApplicationTests]: using SpringBootContextLoader
+13:51:01.116 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.owt.boatapp.BoatappApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+13:51:01.117 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.owt.boatapp.BoatappApplicationTests]: BoatappApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:51:01.137 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [BoatappApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+13:51:01.203 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/home/pschupp/test-owt/backend/build/classes/java/main/com/owt/boatapp/BoatappApplication.class]
+13:51:01.204 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.owt.boatapp.BoatappApplication for test class com.owt.boatapp.BoatappApplicationTests
+13:51:01.288 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [BoatappApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, WithSecurityContextTestExecutionListener, EventPublishingTestExecutionListener, ReactorContextTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+13:51:01.289 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [BoatappApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.6)
+
+2023-05-08T13:51:01.551+02:00  INFO 25408 --- [    Test worker] c.owt.boatapp.BoatappApplicationTests    : Starting BoatappApplicationTests using Java 17.0.6 with PID 25408 (started by pschupp in /home/pschupp/test-owt/backend)
+2023-05-08T13:51:01.553+02:00  INFO 25408 --- [    Test worker] c.owt.boatapp.BoatappApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2023-05-08T13:51:02.181+02:00  INFO 25408 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-08T13:51:02.241+02:00  INFO 25408 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 2 JPA repository interfaces.
+2023-05-08T13:51:02.682+02:00  INFO 25408 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-05-08T13:51:02.833+02:00  INFO 25408 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:fa9a24dd-4037-4fc8-8aa5-86c35757a173 user=SA
+2023-05-08T13:51:02.835+02:00  INFO 25408 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-05-08T13:51:02.879+02:00  INFO 25408 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-08T13:51:02.918+02:00  INFO 25408 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-08T13:51:03.173+02:00  INFO 25408 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-05-08T13:51:03.801+02:00  INFO 25408 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-08T13:51:03.808+02:00  INFO 25408 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-08T13:51:04.230+02:00  WARN 25408 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-08T13:51:04.540+02:00  INFO 25408 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3fcb737, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7a22302c, org.springframework.security.web.context.SecurityContextHolderFilter@2b9615cb, org.springframework.security.web.header.HeaderWriterFilter@f4c3e9, org.springframework.web.filter.CorsFilter@4af50246, org.springframework.security.web.authentication.logout.LogoutFilter@255d4d7, com.owt.boatapp.security.filters.JwtTokenFilter@7ec8db0c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2eb03908, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7891742e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@45482f82, org.springframework.security.web.session.SessionManagementFilter@5b0d480c, org.springframework.security.web.access.ExceptionTranslationFilter@5c28009f, org.springframework.security.web.access.intercept.AuthorizationFilter@752180c4]
+2023-05-08T13:51:04.861+02:00  INFO 25408 --- [    Test worker] c.owt.boatapp.BoatappApplicationTests    : Started BoatappApplicationTests in 3.531 seconds (process running for 4.514)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
