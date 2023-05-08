@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import BoatDetails from '..';
-import wrapper from '../../../tests/util/wrapper.util';
 import { BrowserRouter } from 'react-router-dom';
 
 test('Renders name and description', () => {

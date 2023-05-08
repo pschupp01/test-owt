@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import BoatsList from '../';
 import wrapper from '../../../tests/util/wrapper.util';
 
-test('Renders name and description', () => {
+test('Renders name and description in List', () => {
   render(
     <BoatsList
       boats={[{ id: 3, name: 'testBoat', description: 'testBoat description' }]}
