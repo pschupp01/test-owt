@@ -1,4 +1,4 @@
-# Boat app dependencies
+# Boat webapp dependencies
 
 ### react, react-dom, react-scripts
 React framework used to render our components

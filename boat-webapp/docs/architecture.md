@@ -1,4 +1,4 @@
-# Boat app architecture
+# Boat webapp architecture
 
 Besides a few configuration files at the root of this project, the main code is contained is the `src` folder.
 I'll explain in detail here the role of each folder, and a few files.
