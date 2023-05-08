@@ -10,6 +10,10 @@ There is no significatives logs nor any analytics/monitoring tools installed
 
 Most errors are not correctly handled, it is possible some error codes received on client side are not accurate
 
+## Java docs and openAPI
+
+Most of the code is self explanatory, but if it aims to grow it is important to document our code and API better
+
 ## CI
 
 Setup CI tools to build, lint, and test our code automatically
